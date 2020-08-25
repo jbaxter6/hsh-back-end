@@ -7,7 +7,7 @@ class CreateListings < ActiveRecord::Migration[6.0]
       t.string :state
       t.integer :zip_code
       t.string :description
-      t.string :pet_friendly
+      t.boolean :pet_friendly
       t.string :pet_size
       t.string :contact_number
       t.boolean :rent
@@ -18,24 +18,25 @@ class CreateListings < ActiveRecord::Migration[6.0]
       t.integer :bedrooms
       t.integer :half_bathrooms
       t.integer :full_bathrooms
-      t.string :smoker
+      t.boolean :smoker
       t.string :type_of_house
       # townhome, single-fam
       t.integer :sq_foot
       t.string :image
       t.string :image_2
-      t.string :nearest_school
+      t.string :nearest_elementary
+      t.string :nearest_middle
+      t.string :nearest_high
       t.integer :likes
       t.integer :year_built
-      t.string :parking
+      t.boolean :parking
       t.boolean :heating
       t.boolean :cooling
-      t.string :hoa
+      t.boolean :hoa
       t.boolean :garage
-      t.integer :condition
-      # scale 1-10
-
-
+      t.string :condition
+      
+      
       t.timestamps
     end
   end
