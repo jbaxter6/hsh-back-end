@@ -1,22 +1,39 @@
 class Api::V1::UsersController < ApplicationController
+
+    skip_before_action :logged_in?, only: [:create, :index, :show]
     
     def index
         users = User.all
-        render json: users, only: [:username, :email, :image, :description, :up_votes], include: [:listings, :offers]
+        render json: users, only: [:id, :username, :email, :image, :description, :up_votes], include: [:listings, :offers]
     end
 
     def show
         user = User.find(params[:id])
         listings = user.listings
-        render json: user, only: [:username, :email, :image, :description, :up_votes], include: [:listings, :offers]
+        # render json: user, only: [:username, :email, :image, :description, :up_votes], include: [:listings, :offers]
+
+        render json: user.to_json(
+            only:  [
+                :username, :email, :image, :description, :up_votes
+            ],
+            :include => {
+                :offers => {
+                    :include => [
+                        :listing
+                    ]
+                },
+                :listings => {
+                    :exclude => []
+                }
+            }
+        )
     end
 
     def create
-        byebug
         user = User.new(user_params)
         if user.valid?
             user.save
-            render json: {user: UserSerializer.new(user), token: encode_token({user_id: user.id})}
+            render json: {user: user, token: encode_token({user_id: user.id})}
             # figure out userserializer situation
         else
             render json: {error: "Failed to create the user"}
@@ -25,6 +42,7 @@ class Api::V1::UsersController < ApplicationController
 
     def update
         user = User.find(params[:id])
+        # user.update(user_params)
     end
 
     def destroy

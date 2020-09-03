@@ -1,5 +1,7 @@
 class Api::V1::ListingsController < ApplicationController
 
+    skip_before_action :logged_in?, only: [:index, :show, :create]
+
     def index
         listings = Listing.all
         render :json => listings

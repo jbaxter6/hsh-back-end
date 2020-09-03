@@ -16,10 +16,12 @@ Listing.destroy_all
         email: Faker::Internet.unique.email,
         password: "cantlose",
         image: Faker::Avatar.image(slug: "my-own-slug", size: "50x50", format: "jpg"),
+        # https://randomuser.me/api/portraits/women/90.jpg
         description: "Looking for my home sweet home",
         up_votes: 0
         )
 }
+
 
 
 10.times {

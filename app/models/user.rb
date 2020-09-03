@@ -5,5 +5,5 @@ class User < ApplicationRecord
     has_many :listings, through: :offers
     has_many :listings
 
-    
+
 end
