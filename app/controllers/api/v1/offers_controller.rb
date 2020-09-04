@@ -1,17 +1,5 @@
 class Api::V1::OffersController < ApplicationController
 
-    skip_before_action :logged_in?, only: [:create, :index, :show]
-
-    def index
-        offers = Offer.all
-        render :json => offers
-    end
-
-    # def show
-    #     offer = Offer.find(params[:id])
-    #     render json: offer
-    # end
-
     def create
         offer = Offer.new(offer_params)
         if offer.valid?
@@ -37,7 +25,7 @@ class Api::V1::OffersController < ApplicationController
     end
 
     def offer_params
-        params.permit(:user_id, :listing_id, :offer_price, :money_down, :loan_app)
+        params.permit(:user_id, :listing_id, :offer_price, :money_down, :loan_app, :first_name, :last_name, :phone_num, :email)
     end
 
 end

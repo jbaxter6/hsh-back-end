@@ -12,10 +12,10 @@ Listing.destroy_all
 
 20.times {
     User.create(
-        username: Faker::Name.unique.name,
+        username: Faker::Internet.username(specifier: 5..8),
         email: Faker::Internet.unique.email,
         password: "cantlose",
-        image: Faker::Avatar.image(slug: "my-own-slug", size: "50x50", format: "jpg"),
+        image: 'https://images.unsplash.com/photo-1562087926-662f8573327b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80',
         # https://randomuser.me/api/portraits/women/90.jpg
         description: "Looking for my home sweet home",
         up_votes: 0
@@ -24,7 +24,7 @@ Listing.destroy_all
 
 
 
-10.times {
+100.times {
     Listing.create(
         user: User.all.sample,
         street_name: Faker::Address.street_address,
@@ -47,7 +47,7 @@ Listing.destroy_all
         type_of_house: "Single-Family",
         sq_foot: rand(1000..15000),
         image: "https://www.bostonmagazine.com/wp-content/uploads/sites/2/2019/10/four-bedroom-front-porch.jpg",
-        image_2: "https://cdn.boydforcongress.com/wp-content/uploads/house-week-lighthouse-inside_261806-840x450.jpg",
+        image_2: "https://images.unsplash.com/photo-1574120582582-257909933c5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
         nearest_elementary: Faker::FunnyName.three_word_name,
         nearest_middle: Faker::FunnyName.three_word_name,
         nearest_high: Faker::FunnyName.three_word_name,
@@ -66,6 +66,10 @@ Listing.destroy_all
     Offer.create(
         user: User.all.sample,
         listing: Listing.all.sample,
+        first_name: Faker::Name.first_name,
+        last_name: Faker::Name.last_name,
+        phone_num: Faker::PhoneNumber.cell_phone,
+        email: Faker::Internet.email,
         offer_price: rand(200000..500000),
         money_down: rand(20000..120000),
         loan_app: Faker::Boolean.boolean

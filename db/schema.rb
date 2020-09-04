@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2020_08_24_234930) do
 
   create_table "listings", force: :cascade do |t|
     t.bigint "user_id"
+    t.string "first_name"
+    t.string "last_name"
     t.string "street_name"
     t.string "city"
     t.string "state"
@@ -60,6 +62,10 @@ ActiveRecord::Schema.define(version: 2020_08_24_234930) do
     t.integer "offer_price"
     t.integer "money_down"
     t.boolean "loan_app"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_num"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
