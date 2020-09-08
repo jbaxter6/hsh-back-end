@@ -10,6 +10,8 @@ User.destroy_all
 Offer.destroy_all
 Listing.destroy_all
 
+
+
 20.times {
     User.create(
         username: Faker::Internet.username(specifier: 5..8),
