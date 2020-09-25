@@ -12,17 +12,151 @@ Listing.destroy_all
 
 
 
-20.times {
+    headers = {
+        "X-RapidAPI-Host" => "realtor.p.rapidapi.com",
+        "X-RapidAPI-Key" => "8af688039emsheb6c972a252e585p18dce5jsn90daed24e039"
+    }
+    data = JSON.parse(RestClient.get("https://realtor.p.rapidapi.com/properties/list-for-sale?sort=relevance&city=Beverly+Hills&offset=0&limit=100&state_code=CA", headers))
+    
+    imageArray = data["listings"].map do | listing | 
+        listing["photo"]
+    end
+
+    conditionArray = ["New", "Vintage", "Fixer-Upper"]
+
+    styleArray = ["Single-Family", "Condominium", "Townhouse", "Apartment"]
+    
+    
+
+
+50.times {
     User.create(
         username: Faker::Internet.username(specifier: 5..8),
         email: Faker::Internet.unique.email,
         password: "cantlose",
         image: 'https://images.unsplash.com/photo-1562087926-662f8573327b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80',
-        # https://randomuser.me/api/portraits/women/90.jpg
         description: "Looking for my home sweet home",
         up_votes: 0
         )
 }
+
+Listing.create(
+        user: User.all.sample,
+        street_name: "8230 Stonewall Dr",
+        city: "Vienna",
+        state: "Virginia",
+        zip_code: 22180,
+        
+        description: "The house was welcoming from the open door to the wide hallway. Upon the walls were the photographs of children, so obviously so loved. 
+        The floor was an old-fashioned parquet with a blend of deep homely browns and the walls were the greens of summer gardens meeting a bold white baseboard. 
+        The banister was a twirl of a branch, tamed by the carpenter's hand, it's grain flowing as water might, in waves of comforting woodland hues. 
+        Under the lamp-shine it was nature's art, something that soothed right to the soul.",
+
+        pet_friendly: Faker::Boolean.boolean,
+        pet_size: "large",
+        contact_number: Faker::PhoneNumber.cell_phone,
+        rent: Faker::Boolean.boolean,
+        monthly_price: rand(800..3000),
+        buy: Faker::Boolean.boolean,
+        purchase_price: rand(200000..500000),
+        sold: Faker::Boolean.boolean,
+        bedrooms: rand(1..6),
+        half_bathrooms: rand(4),
+        full_bathrooms: rand(1..5),
+        smoker: Faker::Boolean.boolean,
+        type_of_house: styleArray.sample,
+        sq_foot: rand(1000..15000),
+        image: imageArray.sample,
+        image_2: imageArray.sample,
+        nearest_elementary: Faker::FunnyName.three_word_name,
+        nearest_middle: Faker::FunnyName.three_word_name,
+        nearest_high: Faker::FunnyName.three_word_name,
+        likes: 0,
+        year_built: 2006,
+        parking: Faker::Boolean.boolean,
+        heating: Faker::Boolean.boolean,
+        cooling: Faker::Boolean.boolean,
+        hoa: Faker::Boolean.boolean,
+        garage: Faker::Boolean.boolean,
+        condition: conditionArray.sample
+)
+
+Listing.create(
+        user: User.all.sample,
+        street_name: "191 Crosby Street",
+        city: "Madison",
+        state: "Florida",
+        zip_code: 32340,
+        description: "Beautiful Home Ready To Be Bought By A Beautiful Family",
+        pet_friendly: Faker::Boolean.boolean,
+        pet_size: "large",
+        contact_number: Faker::PhoneNumber.cell_phone,
+        rent: Faker::Boolean.boolean,
+        monthly_price: rand(800..3000),
+        buy: Faker::Boolean.boolean,
+        purchase_price: rand(200000..500000),
+        sold: Faker::Boolean.boolean,
+        bedrooms: rand(1..6),
+        half_bathrooms: rand(4),
+        full_bathrooms: rand(1..5),
+        smoker: Faker::Boolean.boolean,
+        type_of_house: styleArray.sample,
+        sq_foot: rand(1000..15000),
+        image: imageArray.sample,
+        image_2: imageArray.sample,
+        nearest_elementary: Faker::FunnyName.three_word_name,
+        nearest_middle: Faker::FunnyName.three_word_name,
+        nearest_high: Faker::FunnyName.three_word_name,
+        likes: 0,
+        year_built: 2006,
+        parking: Faker::Boolean.boolean,
+        heating: Faker::Boolean.boolean,
+        cooling: Faker::Boolean.boolean,
+        hoa: Faker::Boolean.boolean,
+        garage: Faker::Boolean.boolean,
+        condition: conditionArray.sample
+)
+
+Listing.create(
+        user: User.all.sample,
+        street_name: "300 Salmon Street",
+        city: "Stockdale",
+        state: "Texas",
+        zip_code: 78160,
+
+        description: "The house was welcoming from the open door to the wide hallway. 
+        Upon the walls were the photographs of children, so obviously so loved. The floor was an old-fashioned parquet with a blend of deep 
+        homely browns and the walls were the greens of summer gardens meeting a bold white baseboard. The banister was a twirl of a branch, tamed by the carpenter's hand, 
+        it's grain flowing as water might, in waves of comforting woodland hues. Under the lamp-shine it was nature's art, something that soothed right to the soul.",
+
+        pet_friendly: Faker::Boolean.boolean,
+        pet_size: "large",
+        contact_number: Faker::PhoneNumber.cell_phone,
+        rent: Faker::Boolean.boolean,
+        monthly_price: rand(800..3000),
+        buy: Faker::Boolean.boolean,
+        purchase_price: rand(200000..500000),
+        sold: Faker::Boolean.boolean,
+        bedrooms: rand(1..6),
+        half_bathrooms: rand(4),
+        full_bathrooms: rand(1..5),
+        smoker: Faker::Boolean.boolean,
+        type_of_house: styleArray.sample,
+        sq_foot: rand(1000..15000),
+        image: imageArray.sample,
+        image_2: imageArray.sample,
+        nearest_elementary: Faker::FunnyName.three_word_name,
+        nearest_middle: Faker::FunnyName.three_word_name,
+        nearest_high: Faker::FunnyName.three_word_name,
+        likes: 0,
+        year_built: 2006,
+        parking: Faker::Boolean.boolean,
+        heating: Faker::Boolean.boolean,
+        cooling: Faker::Boolean.boolean,
+        hoa: Faker::Boolean.boolean,
+        garage: Faker::Boolean.boolean,
+        condition: conditionArray.sample
+)
 
 
 
@@ -46,10 +180,10 @@ Listing.destroy_all
         half_bathrooms: rand(4),
         full_bathrooms: rand(1..5),
         smoker: Faker::Boolean.boolean,
-        type_of_house: "Single-Family",
+        type_of_house: styleArray.sample,
         sq_foot: rand(1000..15000),
-        image: "https://www.bostonmagazine.com/wp-content/uploads/sites/2/2019/10/four-bedroom-front-porch.jpg",
-        image_2: "https://images.unsplash.com/photo-1574120582582-257909933c5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+        image: imageArray.sample,
+        image_2: imageArray.sample,
         nearest_elementary: Faker::FunnyName.three_word_name,
         nearest_middle: Faker::FunnyName.three_word_name,
         nearest_high: Faker::FunnyName.three_word_name,
@@ -60,7 +194,7 @@ Listing.destroy_all
         cooling: Faker::Boolean.boolean,
         hoa: Faker::Boolean.boolean,
         garage: Faker::Boolean.boolean,
-        condition: "New"
+        condition: conditionArray.sample
     )
 }
 

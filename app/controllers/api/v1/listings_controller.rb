@@ -14,7 +14,6 @@ class Api::V1::ListingsController < ApplicationController
 
     def create
         listing = Listing.new(listing_params)
-        byebug
         if listing.valid?
             listing.save
         else
